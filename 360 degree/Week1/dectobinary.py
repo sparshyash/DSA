@@ -1,4 +1,6 @@
 # function to convert decimal to binary
+
+# Approach 1 O(n) as 
 def decToBinary(n):
     binArr = []
 

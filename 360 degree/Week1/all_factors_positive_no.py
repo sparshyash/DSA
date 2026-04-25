@@ -1,5 +1,7 @@
 import math
 
+# Approach 1 O(n) as it iterates from 1 to n
+# Approach 2 O(sqrt(n)) as Time Complexity and O(1) as space complexity
 def printDivisors(n):
     divisors = []
     
