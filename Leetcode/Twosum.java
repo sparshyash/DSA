@@ -1,20 +1,28 @@
-class Twosum {
-    public int[] twoSum(int[] nums, int target) {
-        int n= nums.length;
-        HashMap<Integer,Integer> map=new HashMap<>();
-        int complement=0;
 
-        for(int  i =0;i<n;i++){
-            complement =target-nums[i];
-            if (map.containsKey(complement)){
-                return new int []{map.get(complement),i};
+
+public class Twosum {
+    public static int[] twoSum(int n, int []arr, int target) {
+        int[] ans = new int[2];
+        ans[0] = ans[1] = -1;
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (arr[i] + arr[j] == target) {
+                    ans[0] = i;
+                    ans[1] = j;
+                    return ans;
+                }
             }
-            map.put(nums[i],i);
-
         }
-        return new int[]{-1,-1};
+        return ans;
     }
-}
-// O(n)
 
-// 2nd approach 
+    public static void main(String args[]) {
+        int n = 5;
+        int[] arr = {2, 6, 5, 8, 11};
+        int target = 17;
+        int[] ans = twoSum(n, arr, target);
+        System.out.println("This is the answer for variant 2: [" + ans[0] + ", "
+                           + ans[1] + "]");
+    }
+
+}
