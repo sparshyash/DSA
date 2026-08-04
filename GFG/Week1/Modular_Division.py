@@ -70,9 +70,48 @@ def modDivide(a, b, m):
      # Division not possible
     if b == 0 or gcd(b, m) != 1:
         return -1
-    inv = modInverse(b, m)
-    return (a * inv) % m
+    invmodm = modInverse(b, m)
+    return (a %m * invmodm) % m
 
 if __name__ == "__main__":
     a, b, m = 10, 2, 13
 print(modDivide(a, b, m))
+
+
+
+
+#Approach 2   Extended Euclidean Algorithm O(log M) Time and O(1) Space
+#  To find the modular inverse of a number b modulo M using the Extended Euclidean Algorithm, we aim to solve the equation b * x + M * y = gcd(b, M). If the greatest common divisor gcd(b, M) is 1, then x is the modular inverse of b modulo M. The Extended Euclidean Algorithm computes both gcd and the coefficients x and y that satisfy this linear combination. Once x is found, we take its positive equivalent by calculating (x % M + M) % M to get the correct modular inverse. This approach works for any modulus M, not necessarily prime.
+
+
+
+
+def gcdExtended(a, b):
+    if a == 0:
+        return b, 0, 1
+    gcd, x1, y1 = gcdExtended(b % a, a)
+    x = y1 - (b // a) * x1
+    y = x1
+    return gcd, x, y
+
+# Compute modular inverse
+def modInverse(b, M):
+    gcd, x, _ = gcdExtended(b, M)
+    if gcd != 1:
+        return -1
+    return (x % M + M) % M
+
+# Perform (a / b) % M
+def modDivide(a, b, M):
+    a %= M
+    inv = modInverse(b, M)
+    if inv == -1:
+        return -1
+    return (a * inv) % M
+
+if __name__ == "__main__":
+    a = 10
+    b = 2
+    M = 13
+    result = modDivide(a, b, M)
+    print(result)
