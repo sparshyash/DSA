@@ -6,6 +6,7 @@ def mooresvoting(arr):
         if count == 0:
             cand = num  
         # vote count
+        
         count += 1 if num == cand else -1  
     return cand
 

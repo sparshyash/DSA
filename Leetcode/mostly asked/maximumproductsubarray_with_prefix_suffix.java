@@ -1,4 +1,4 @@
-class maximumproductsubarray {
+class maximumproductsubarray_with_prefix_suffix {
     public int maxProduct(int[] nums) {
         int n = nums.length;
         int max = nums[0]; 
@@ -17,7 +17,7 @@ class maximumproductsubarray {
         return max;
     }
     public static void main(String[] args) {
-        maximumproductsubarray obj = new maximumproductsubarray();
+        maximumproductsubarray_with_prefix_suffix obj = new maximumproductsubarray_with_prefix_suffix();
         int arr[] = {2, 3, -2, 4};
         System.out.println(obj.maxProduct(arr));
     }

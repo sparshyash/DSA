@@ -1,0 +1,2 @@
+Stack data structure, which organizes elements in a Last-In, First-Out manner.
+
