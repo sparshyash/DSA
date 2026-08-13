@@ -1,0 +1,40 @@
+static -- memory allocated in advance and only use that amount during writting of prograam can't increase size 
+
+dynamic -- memory allocated during runtime s and when require we can allocate as much require during running of program increase and decrease size as well 
+
+LInked list -- it's a user defined datatype   
+
+Pointer(*)  -- used to store memory address hexadecimal m hota hai malloc(), calloc(),realloc()-- free 
+
+Space Complexity -- Auxillary (Space takes to solve problem ) + input space ( space takes to store input )
+
+c=a+b  c -> Auxillary O(3)
+
+DMA -- malloc -> alocates bunch of memory 
+
+Calloc--> used to allocate memory dynamically ptr =(datatype*)calloc(n,size of (data));
+
+calloc function creates memory blocks and initialize with 0  -- contigenous allocation -- 2 agruments but malloc has one each memory block initilsed to zero 
+
+#include<stdlib.h>
+itn main()
+{
+    int *ptr,n;
+    printf("Enter no of memory bloacks);
+    scanf("%d, &n);
+
+    ptr=(int*)calloc(n,sizeof(int));
+    for(int i=0;i<n;i++)
+    {
+        printf("Enter value);
+        scanf(%d,(ptr+i));
+    }
+}
+
+malloc--> allocats  emoty during  run time allocates a bunch of memory not initialize  hence all values are garbage before initialisation 
+
+ptr=(datatype*)malloc(size in bytes )
+
+ptr=(int*)malloc(n*sizeof(int));
+
+free()--> used to deallocate memory free space from calloc and malloc .
