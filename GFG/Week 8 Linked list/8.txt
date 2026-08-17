@@ -1,0 +1,58 @@
+This week, we dive into Linked Lists, one of the most versatile and interview-favorite data structures. Unlike arrays, linked lists don’t rely on contiguous memory and allow dynamic memory allocation, efficient insertions, and deletions. Mastering them will sharpen your pointer manipulation skills, improve your logical thinking, and prepare you for some of the most frequently asked coding challenges.
+
+introduction_to_linked_lists.
+
+Short Notes on Linked List
+
+comments
+A linked list is a linear data structure in which elements, called nodes, are stored at non-contiguous memory locations, each node having data and a pointer (next or prev or both).
+
+Types of Linked Lists
+
+Singly Linked List (SLL): Each node stores data + pointer to next.
+link1
+
+
+Doubly Linked List (DLL): Each node stores data + prev and next.
+Screenshot-2025-09-01-121047
+
+
+Circular Linked List (CLL): Last node points back to head, forming a cycle.
+Screenshot-2025-09-01-173118
+
+
+array_vs_linked_list
+
+
+Linked List Node Structure
+
+
+class Node:
+    def __init__(self, val):
+        self.data = val
+        self.next = None
+
+
+__init__ is the constructor method in Python. It is called automatically whenever you create a new object (instance) of a class, and it is used to set up (initialize) the object's starting attributes.
+
+In this specific Node class context, here is what each part does:
+
+self: Represents the specific instance of the Node being created.
+
+val: An argument passed in when creating the node (e.g., Node(10) passes 10 as val).
+
+self.data = val: Creates an attribute named data on the node and assigns the passed value to it.
+
+self.next = None: Creates an attribute named next and sets it to None by default, because a newly created node doesn't point to any other node yet.
+
+def createList(arr):
+   
+    if not arr: return None
+    head = Node(arr[0])
+    curr = head
+   
+    for i in arr[1:]:
+        curr.next = Node(i)
+        curr = curr.next
+    return head
+

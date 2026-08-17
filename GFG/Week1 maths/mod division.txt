@@ -1,0 +1,181 @@
+Given three positive integers a, b, and M, the objective is to find (a/b) % M i.e., find the value of (a × b-1 ) % M, where b-1 is the modular inverse of b modulo M.
+
+Examples: 
+
+Input: a = 10, b = 2, M = 13
+Output: 5
+Explanation: The modular inverse of 2 modulo 13 is 7, so (10 / 2) % 13 = (10 × 7) % 13 = 70 % 13 = 5.
+
+Input: a = 7, b = 4, M = 9
+Output: 4
+Explanation: The modular inverse of 4 modulo 9 is 7, so (7 / 4) % 9 = (7 × 7) % 9 = 49 % 9 = 4
+
+Modular division is the process of dividing one number by another within the rules of modular arithmetic. Unlike regular arithmetic, modular systems do not support direct division. Instead, division is performed by multiplying the dividend by the modular multiplicative inverse of the divisor under a given modulus.
+
+In simple terms, to compute (a/b) % M we instead calculate (a × b-1 ) % M where b-1 is the modular inverse of b modulo M ( i.e., b × b-1 ≡ 1 mod M ).
+
+ (a * b) % m = ((a % m) * (b % m)) % m 
+(a + b) % m = ((a % m) + (b % m)) % m  
+(a - b) % m = ((a % m) - (b % m) + m) % m    // m is added to handle negative numbers
+But, 
+(a / b) % m -->  not same as   <--  ((a % m)/(b % m)) % m  
+For example, a = 10, b = 5, m = 5.     (a / b) % m is 2, but ((a % m) / (b % m)) % m is not defined.
+
+
+Given two integers n and m, find the modular multiplicative inverse of n under modulo m. The modular multiplicative inverse is an integer x such that:
+
+n ⋅ x ≡ 1 (mod m)
+Here dot means multiplication.
+
+The modular inverse x must be in the range [1, ... , m−1] (it cannot be 0 since n × 0 mod m is never 1).
+The inverse exists only if gcd(n, m) = 1, i.e., n and m are coprime.
+
+
+If the modulus m is a prime number, we can use Fermat’s Little Theorem to find the modular inverse of b. 
+According to the theorem, the inverse of b modulo m is b M-2 % M. So we can use Modular Exponentiation for computing b M-2 % M.
+
+
+def modInverse(n, m):  Naive O(m)  -> Iterative
+
+    # Try all values from 1 to m-1
+    for x in range(1, m):
+        
+        # Check if (n * x) % m == 1.
+        # Note that n and x can be larger
+        # than m, so we do modulo before
+        # mulityplying
+        if ((n % m) * (x % m)) % m == 1:
+            return x
+
+    return -1
+
+if __name__ == "__main__":
+    n = 3
+    m = 11
+
+    print(modInverse(n, m))
+
+
+
+means if gcd(a,m) == 1 then inverse exist
+
+
+
+Expected Approach using extended Euclidean algorithm   O(log m) - T and O(1) -S
+
+Extended Euclidean algorithms takes two integers 'a' and 'b', then find their gcd, and also find 'x' and 'y' such that 
+
+ax + by = gcd(a, b)   bezout's identity
+
+To find the multiplicative inverse of 'n' under 'm', we put b = m in the above formula. Since we know that n and m are relatively prime, we can put the value of gcd as 1.
+
+nx + my = 1
+
+If we take modulo m on both sides, we get
+
+nx + my ≡ 1 (mod m)  means both leaves rem 1 whn % m its called congruent symbol
+
+We can remove the second term on left side as 'my (mod m)' would always be 0 for an integer y. 
+
+nx  ≡ 1 (mod m)
+
+So the 'x' that
+
+When n and m are coprime (gcd(n, m) = 1), the Extended Euclidean Algorithm finds values x and y such that n · x + m · y = 1. From this equation, x satisfies n · x ≡ 1 (mod m), so it is the modular multiplicative inverse of n.
+
+ O(log m) Time and O(log m) Space
+
+ public class GFG {
+
+    // Function for extended Euclidean Algorithm
+    static int gcdExtended(int a, int b, int[] x, int[] y)
+    {
+        // Base Case
+        if (a == 0) {
+            x[0] = 0;
+            y[0] = 1;
+            return b;
+        }
+
+        // To store results of recursive call
+        int[] x1 = new int[1];
+        int[] y1 = new int[1];
+        int gcd = gcdExtended(b % a, a, x1, y1);
+
+        // Update x and y using results of recursive call
+        x[0] = y1[0] - (b / a) * x1[0];
+        y[0] = x1[0];
+
+        return gcd;
+    }
+
+    static int modInverse(int n, int m)
+    {
+        int[] x = new int[1];
+        int[] y = new int[1];
+
+        int g = gcdExtended(n, m, x, y);
+        if (g != 1)
+            return -1;
+        else {
+
+            // m is added to handle negative x
+            int res = (x[0] % m + m) % m;
+            return res;
+        }
+    }
+
+    public static void main(String[] args)
+    {
+        int n = 3, m = 11;
+
+        System.out.println(modInverse(n, m));
+    }
+}
+
+# Function for extended Euclidean Algorithm
+def gcdExtended(a, b, x, y):
+
+    # Base Case
+    if a == 0:
+        x[0] = 0  size 1 list   a=0
+        y[0] = 1   => b.y =b hence y=1 since gcd(0,b)=b 
+        return b
+
+    # To store results of recursive call
+    x1 = [0]
+    y1 = [0]
+
+    gcd = gcdExtended(b % a, a, x1, y1)  Recursive Call:It calls gcdExtended(b % a, a, x1, y1) using Euclid's rule: $\gcd(a, b) = \gcd(b \pmod a, a)$.
+
+    # Update x and y using results of recursive call
+    x[0] = y1[0] - (b // a) * x1[0]  Updating $x$ and $y$ (Unwinding the recursion):From the recursive step, we know:$$(b \pmod a) \cdot x_1 + a \cdot y_1 = \gcd$$Since $b \pmod a = b - \lfloor b/a \rfloor \cdot a$, substituting this gives:$$a \cdot \underbrace{(y_1 - \lfloor b/a \rfloor \cdot x_1)}_{\text{new } x} + b \cdot \underbrace{x_1}_{\text{new } y} = \gcd$$
+
+    y[0] = x1[0] 
+
+    return gcd
+
+def modInverse(n, m):
+    x = [0]
+    y = [0]
+
+    g = gcdExtended(n, m, x, y)
+    if g != 1:
+        return -1
+    else:
+        
+        # m is added to handle negative x
+        res = (x[0] % m + m) % m
+        return res
+
+
+if __name__ == "__main__":
+    n = 3
+    m = 11
+
+    print(modInverse(n, m))
+
+
+
+
+The Recursive Step (Reversing back up):From the recursive call gcdExtended(b % a, a, x1, y1), we receive $x_1$ and $y_1$ that satisfy:$$(b \pmod a) \cdot x_1 + a \cdot y_1 = \gcd$$We know that:$$b \pmod a = b - \lfloor b/a \rfloor \cdot a$$Substitute this into the equation:$$\big(b - \lfloor b/a \rfloor \cdot a\big) \cdot x_1 + a \cdot y_1 = \gcd$$Now, expand the terms:$$b \cdot x_1 - \lfloor b/a \rfloor \cdot a \cdot x_1 + a \cdot y_1 = \gcd$$Group the terms by $a$ and $b$:$$a \cdot \underbrace{\big(y_1 - \lfloor b/a \rfloor \cdot x_1\big)}_{\text{this becomes your new } x} + b \cdot \underbrace{x_1}_{\text{this becomes your new } y} = \gcd$$

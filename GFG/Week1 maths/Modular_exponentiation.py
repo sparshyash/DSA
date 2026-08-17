@@ -1,3 +1,5 @@
+# Approach1  O(n) time complexity
+
 def powMod(x, n, M):
     res = 1
 

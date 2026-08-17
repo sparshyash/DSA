@@ -1,0 +1,30 @@
+The Modulo Operation
+This modulo operation yields the remainder when the product of a and b is divided by M. The result is always an integer between 0 and M−1.
+For example, 7 mod 3 results in 1 because when 7 is divided by 3, the remainder is 1. This operation is at the core of modular arithmetic.
+
+Properties of Modular Multiplication
+
+Modular multiplication shares several properties with regular multiplication, which makes it a useful tool in various mathematical and computational contexts.
+
+Commutativity: (a × b) mod M = (b × a) mod M. The order of multiplication does not affect the result.
+Associative: ((a × b) ×c) mod M = (a× (b × c)) mod M. The way in which numbers are grouped during multiplication does not affect the outcome.
+Distributivity: (a × (b+c)) mod M = ((a×b) mod M +(a × c) mod M) mod M. This property links multiplication and addition in modular arithmetic.
+
+(a x b) mod M = ((a mod M) x (b mod M)) mod M 
+(a x b x c) mod M = ((a mod M) x (b mod M) x (c mod M)) mod M
+
+Let a % M = r1
+and b % M = r2
+
+Then a and b can be written as (using quotient
+theorem).  Here q1 is quotient when we divide 
+a by M and r1 is remainder. Similar meanings 
+are there for q2 and r2
+a = M x q1 + r1
+b = M x q2 + r2
+
+
+dividend = divisor * quotient + remainder
+
+here quotient is inv and remainder should be 1 in case 
+
