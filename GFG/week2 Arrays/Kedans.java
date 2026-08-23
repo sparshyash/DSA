@@ -5,9 +5,9 @@ public class Kedans {
         if (arr == null || arr.length == 0) {
             return 0; 
         }
-
+            // sliding window
         int currentMax = arr[0]; // Tracks the max sum ending at the current position
-        int globalMax = arr[0];  // Tracks the overall maximum sum found so far
+        int res = arr[0];  // Tracks the overall maximum sum found so far
         
         // Start from index 1 since index 0 is already used for initialization
         for (int i = 1; i < arr.length; i++) {
@@ -16,10 +16,10 @@ public class Kedans {
             currentMax = Math.max(arr[i], currentMax + arr[i]);
             
             // Update the global maximum if the current subarray sum is better
-            globalMax = Math.max(globalMax, currentMax);
+            res = Math.max(res, currentMax);
         }
         
-        return globalMax;
+        return res;
     }
     
     public static void main(String[] args) {
@@ -29,3 +29,6 @@ public class Kedans {
     }
 
 }
+
+
+

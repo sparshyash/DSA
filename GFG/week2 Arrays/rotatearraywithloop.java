@@ -1,6 +1,6 @@
 package GFG.week2;
 
-public class rotatearray {
+public class rotatearraywithloop {
     static void rotateclockwise(int[] arr, int k) {
         int n = arr.length;
         if (n == 0) return;

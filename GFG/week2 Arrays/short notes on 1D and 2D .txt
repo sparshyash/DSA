@@ -1,0 +1,43 @@
+Basics of Static and Dynamic Arrays(1D & 2D)
+Static arrays have a fixed size defined at compile time and are stored in contiguous memory, making them fast but inflexible. In contrast, dynamic arrays can grow or shrink at runtime, allowing more flexibility in handling varying data sizes, though they may incur extra overhead during resizing operations.
+
+Declaration & Initialization
+
+**Table 1: Array / Collection Operations**
+
+| Operation |                                                    C++/Java |                                 Python/JS/C# |
+| --- | --- | --- |
+| **Sort** | `                                                   sort(v.begin(), v.end())` (C++)/Arrays.sort(arr)` (Java) | `sorted(arr)` (Python) /arr.sort()` (JS) /`Array.Sort(arr)` (C#) |
+| **Reverse** | `                                                  reverse(v.begin(), v.end())` (C++) /Collections.reverse()` (Java) | `arr[::-1]` (Python)arr.reverse()` (JS)Array.Reverse(arr)` (C#) |
+| **Size / Length** | `                                         v.size()` (C++)arr.length` (Java) | `len(arr)` (Python)arr.length` (JS)<br>arr.Length` (C#) |
+| **Push / Append** |                                           `v.push_back(x)` (C++)list.add(x)` (Java ArrayList) | `arr.append(x)` (Python)arr.push(x)` (JS)list.Add(x)` (C#) |
+
+---
+
+**Table 2: Array / Vector Declarations**
+
+| Language | 1D Array / Vector | 2D Array / Matrix |
+| --- | --- | --- |
+| **C++ (Array)** | `int arr[5] = {1, 2, 3, 4, 5};` | `int arr[2][2] = {{1, 2}, {3,4}};` |
+| **C++ (Vector)** | `vector<int> v = {1, 2, 3};` | `vector<vector<int>> v(2, vector<int>(2));` |
+| **Java** | `int[] arr = {1, 2, 3};` | `int[][] arr = {{1, 2}, {3, 4}}` |
+| **Python** | `arr = [ 1, 2, 3 ]` | `matrix = [[1,2], [3,4]]` |
+| **JavaScript** | `let arr = [1, 2, 3];` | `let matrix = [[1, 2], [3, 4]];` |
+| **C#** | `int[] arr = new int[] {1, 2, 3};` | `int[,] matrix = new int[,] { {1,2}, {3,4} };` |
+
+Accessing and Traversing Arrays
+
+In a 1D array, elements are accessed using a single loop with index arr[i].
+In a 2D array, use nested loops to access elements by row and column as arr[i][j].
+This allows structured traversal across single or multi-dimensional data.
+
+Important Algorithm and Problem on 1D-Arrays
+Array Reversal is a fundamental operation that reverses the order of elements in an array, turning the first element into the last and vice versa. It is often used as a building block in many array transformation algorithms.
+
+To reverse the array, swap elements from both ends moving toward the center until all elements are reversed in place.
+
+Classical Algorithm and Problem on 2D-Arrays
+Matrix multiplication is a classical matrix problem where each element of the resulting matrix is calculated as the dot product of a row from the first matrix and a column from the second. It combines two matrices to form a new one based on this rule.
+
+Core Idea: For C[i][j], sum the product of corresponding elements from row i of matrix A and column j of matrix B: C[i][j] = A[i][0]*B[0][j] + A[i][1] * B[1][j] + ... + A[i][k] * B[k][j]
+

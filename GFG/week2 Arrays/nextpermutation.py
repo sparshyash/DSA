@@ -1,3 +1,10 @@
+
+# Next Permutation Algorithm is a classical algorithm that rearranges the array into its next lexicographically greater permutation. If such a permutation isn't possible, it rearranges the array into ascending order in-place.
+
+# To find the next permutation, identify the first decreasing element from the right, swap it with the next larger element on its right, then reverse the remaining suffix.
+
+# This algorithm finds the lexicographically next greater permutation of numbers in-place in $O(n)$ time and $O(1)$ extra space.
+
 def nextpermutation(arr):
     n=len(arr) 
     

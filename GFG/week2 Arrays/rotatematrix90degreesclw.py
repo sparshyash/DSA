@@ -1,3 +1,13 @@
+
+# Rotate Square Matrix by 90 Degrees is a classical problem based on matrices, where a square 2D matrix is rotated 90 degrees clockwise. In this transformation, the first row becomes the last column, the second row becomes the second-last column, and so on.
+
+
+
+
+
+
+
+
 def rotateMatrix(mat):
     n=len(mat)
 

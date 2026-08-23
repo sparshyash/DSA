@@ -47,7 +47,8 @@ self.next = None: Creates an attribute named next and sets it to None by default
 
 def createList(arr):
    
-    if not arr: return None
+    if not arr: 
+        return None
     head = Node(arr[0])
     curr = head
    

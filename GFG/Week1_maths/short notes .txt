@@ -1,0 +1,205 @@
+Short Notes: Maths & Combinatronics
+
+comments
+Mathematical Foundations
+These are the most basic but essential mathematical tools in programming. They help in performing quick checks, optimizing loops, and building logic for number-based problems. Understanding GCD, LCM, floor/ceil, and number properties like parity or binary form is fundamental.
+
+A number is even if it is divisible by 2, i.e., n % 2 == 0; otherwise, it is odd.
+Floor of a number gives the greatest integer less than or equal to it.
+Example: floor(3.8) = 3
+Ceil gives the smallest integer greater than or equal to the number.
+Example: ceil(3.2) = 4
+The sum of the first n natural numbers is: Sum = (n(n+1))/2​
+The GCD (Greatest Common Divisor) of two numbers a and b is the largest number that divides both.
+Found using the Euclidean algorithm: gcd(a,b)=gcd(b,a%b)
+The LCM (Least Common Multiple) is the smallest number that is divisible by both a and b.
+Formula: lcm(a,b)= (a x b)/ gcd(a,b)
+A number is called a perfect number if it is equal to the sum of its proper divisors.
+Example: 6 → divisors: 1, 2, 3 → sum = 6
+To find factors of a number n, iterate from 1 to √n and check n % i == 0. Store both i and n/i.
+Decimal to binary conversion: divide the number by 2 repeatedly, store remainders, and reverse them.
+Prime Number Algorithms and Sieve Techniques
+A prime number is a natural number greater than 1 that has exactly two distinct positive divisors — 1 and itself.
+
+Basic Primality Check: To check if a number n is prime, try dividing it by numbers from 2 to n-1. If any number divides it, then n is not prime; otherwise, it is.
+
+Optimized Method (Square Root Check): We only need to check up to √n because if n has a factor larger than √n, the corresponding smaller factor must be less than √n.
+
+So if no number from 2 to √n divides n, then n is prime.
+
+import math
+
+def isPrime(n):
+
+    # Check if n is 1 or 0
+    if n <= 1:
+        return False
+
+    # Check if n is 2 or 3
+    if n == 2 or n == 3:
+        return True
+
+    # Check whether n is divisible by 2 or 3
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    
+    # Check from 5 to square root of n
+    # Iterate i by (i+6)
+    i = 5
+    while i <= math.sqrt(n):
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+
+    return True
+
+if __name__ == "__main__":
+  n = 7
+  if(isPrime(n)): 
+    print("true")
+  else:
+    print("false")
+
+
+Sieve of Eratosthenes: The Sieve of Eratosthenes is an efficient algorithm to find all prime numbers up to a given number n.
+
+Note: It is much faster than checking each number individually using the basic method.
+
+def sieve(n):
+   
+    #Create a boolean list to track prime status of numbers
+    prime = [True] * (n + 1)
+    p = 2
+
+    # Sieve of Eratosthenes algorithm
+    while p * p <= n:
+        if prime[p]:
+            
+            # Mark all multiples of p as non-prime
+            for i in range(p * p, n + 1, p):
+                prime[i] = False
+        p += 1
+
+    # Collect all prime numbers
+    res = []
+    for p in range(2, n + 1):
+        if prime[p]:
+            res.append(p)
+    
+    return res
+
+if __name__ == "__main__":
+    n = 35
+    res = sieve(n)
+    for ele in res:
+        print(ele, end=' ')
+
+Prime Factorization Techniques:
+Optimised Trial Division:
+
+Try dividing n by all numbers up to √n, starting from 2.
+After removing all factors of 2, check only odd numbers.
+If n is still greater than 1, it's a prime factor itself.
+Using Sieve + SPF (Smallest Prime Factor):
+
+The sieve precomputes and stores the smallest prime factor (SPF) for every number up to n.
+Then, to factorize any number, we repeatedly look up spf[n] and divide n by it, collecting the prime factors efficiently.
+We can also count the number of Prime factors using this approach.
+
+Number of Prime Factor:
+
+If the prime factorization of a number n is: 
+n= p ^e1 * p2^e2 *...pk^ek
+
+Then the total number of divisors of n is
+(e1 +1 )*(e2 +1)*...
+Each exponent eᵢ gives us (eᵢ + 1) choices (from pᵢ⁰ to pᵢ^eᵢ) in forming a divisor.
+
+Multiplying all such choices gives the total number of divisors.
+
+
+Modular Arithmetic
+Modular arithmetic is a system of arithmetic where numbers “wrap around” after reaching a certain value, called the modulus. It is commonly used in programming, cryptography, and number theory.
+
+We can write:
+
+a%m = remainder when a is divided by m
+
+
+Addition Modulo: Modular addition ensures results stay within bounds by applying the modulus after addition: (a+b)%m = [(a %m) +(b % m)]%m
+
+Subtraction Modulo: Modular subtraction also keeps results within bounds by applying the modulus after subtraction: (a−b)%m = [(a%m)−(b %m)+m] %m
+
+Note: Adding m before applying modulus in subtraction avoids negative results.
+
+Multiplication Modulo: Useful for avoiding overflow in large calculations.
+
+Modular multiplication keeps the result within bounds:
+
+ (a×b)%m=[(a%m)×(b%m)]%m
+
+Division Modulo: In modular arithmetic, we cannot divide numbers directly. To divide a by b under modulo m, we use the modular inverse of b.
+
+We use the modular inverse: (a/b)%m = (a x b-1) ​%m is the modular inverse of b modulo m.
+
+To calculate the modular inverse when the number and modulus are coprime and the modulus is prime, we use Fermat’s Little Theorem.
+
+If gcd(b,m)=1 and m is a prime number, then: b ^ −1 ≡ (b^ m−2) % m
+
+Use modular exponentiation to calculate  bm−2 mod m, which is fast and avoids overflow.
+
+Binary Exponentiation: Used calculate ab mod m efficiently in O(log b) time
+
+Instead of multiplying a^b times, we break the power into squares: a^b = a1×a2×a4×…
+
+Only include the terms where the bit in b is set (1).
+
+
+x^n % m
+
+def powMod(x, n, M):
+    res = 1
+
+    # Loop until exponent becomes 0
+    while n >= 1:
+        
+        # n is odd, multiply result by current x and take modulo
+        if n % 2 == 1:
+            res = (res * x) % M
+            
+            # Make n even
+            n -= 1 
+        else:
+            
+            # n is even, square the base and halve the exponent
+            x = (x * x) % M
+            n //= 2
+
+    return res
+
+if __name__ == "__main__":
+    x, n, M = 3, 2, 4
+    print(powMod(x, n, M))
+
+
+
+Euler’s Totient & Inclusion-Exclusion Techniques
+Euler’s Totient Function (φ(n))
+
+The Euler Totient Function, denoted as φ(n), counts the number of positive integers ≤ n that are coprime to n.
+
+If the prime factorization of n is: n = p1^e1​ ​x p2^e2 ​x ⋯ x pk^ek​​
+
+Then: ϕ(n)=n x (1  −​1​/p1) x (1  −1/p2​) x⋯x (1  −1/pk​)
+
+Inclusion-Exclusion Principle (IEP) helps us count the total number of elements in the union of overlapping sets by adding the sizes of individual sets and then subtracting overlaps, so we don’t count anything more than once.
+
+Generalized Formula: ∣ ⋃ i=1 to n  Ai | ​ =∑ ∣Ai​∣ − ∑∣Ai ​∩ Aj​∣ + ∑ ∣Ai​ ∩ Aj ​∩ Ak​∣− ⋯ + (−1)^n  + 1× ∣A1​ ∩ A2​ ∩ ⋯ ∩An​∣
+
+Explanation:
+
+Add all individual set sizes.
+Subtract the sizes of pairwise intersections.
+Add the sizes of triple intersections.
+Continue alternating signs until the intersection of all sets.
+Example for 3 sets (A, B, C): ∣A∪B∪C∣=∣A∣+∣B∣+∣C∣−∣A∩B∣−∣B∩C∣−∣A∩C∣+∣A∩B∩C∣

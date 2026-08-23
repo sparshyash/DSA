@@ -1,6 +1,6 @@
 package GFG.week2;
 
-public class reversearray {
+public class reversearraywithpointers {
 
 public void reverseArray(int[] arr) {
         
@@ -24,3 +24,9 @@ public void reverseArray(int[] arr) {
 } 
 
 }
+
+
+Array Rotations is a transformation where the array is rotated k times to the right or left, causing elements to shift cyclically. This operation can be done efficiently in-place.
+
+To rotate the array, reverse the last k elements, reverse the first n − k elements, and finally reverse the entire array.
+

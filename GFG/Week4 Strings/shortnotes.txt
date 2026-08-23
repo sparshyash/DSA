@@ -26,11 +26,12 @@ C#
 C#
 string s = "hello";
 
-Operation,C++,Java,Python
-Length,s.length(),s.length(),len(s)
-Substring,"s.substr(pos, len)","s.substring(i, j)",s[i:j]
-Char At,s[i],s.charAt(i),s[i]
-Append,"s += ""x""","s += ""x""","s += ""x"""
-Compare,s1 == s2,s1.equals(s2),s1 == s2
-Find,"s.find(""a"")","s.indexOf(""a"")","s.find(""a"")"
-Reverse,"reverse(s.begin(), s.end())",new StringBuilder(s).reverse(),s[::-1]
+Operation,          C++,                                    Java,                               Python
+Length,             s.length(),                         s.length(),                             len(s)
+Substring,"         s.substr(pos, len)",                "s.substring(i, j)",                    s[i:j]
+Char At,            s[i],                               s.charAt(i),                            s[i]
+Append,"            s += ""x""",                        "s += ""x""",                           "s += ""x"""
+Compare,            s1 == s2,                           s1.equals(s2)                   ,       s1 == s2
+Find,"              s.find(""a"")",                     "s.indexOf(""a"")",                     "s.find(""a"")"
+Reverse,"           reverse(s.begin(), s.end())",        new StringBuilder(s).reverse(),         s[::-1]
+

@@ -1,3 +1,9 @@
+#
+# Moore’s Voting Algorithm is a classical algorithm used to find the majority element (appearing more than ⌊n/2⌋ times) in an array. It works in a single pass by maintaining a candidate and a counter, making it highly efficient in both time and space.
+
+# Illustration:
+
+
 def mooresvoting(arr):
     count = 0
     cand = 0

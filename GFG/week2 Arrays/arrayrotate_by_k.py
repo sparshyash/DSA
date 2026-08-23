@@ -1,3 +1,8 @@
+# Array Rotations is a transformation where the array is rotated k times to the right or left, causing elements to shift cyclically. This operation can be done efficiently in-place.
+
+# To rotate the array, reverse the last k elements, reverse the first n − k elements, and finally reverse the entire array.
+
+
 # Method 1 O(n*k) and O(k) space
 
 

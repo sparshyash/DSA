@@ -1,4 +1,4 @@
-package GFG.week2;
+
 
 public class moorevoting {
     public static void main(String[] args) {
