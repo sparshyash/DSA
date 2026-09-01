@@ -9,7 +9,8 @@
 # Output :  55
 # Explanation : 55 is the smallest number divisible by both 5 and 11
 
-This approach to calculating the Least Common Multiple (LCM) involves starting from the greater of the two numbers and checking if it's divisible by the smaller number. It iterates through multiples of the larger number, incrementing by the larger number itself in each step. The first multiple that is divisible by the smaller number is the LCM. This method is simple and intuitive, but it can be inefficient, especially for large numbers, as it checks multiple values until a match is found.
+# This approach to calculating the Least Common Multiple (LCM) involves starting from the greater of the two numbers and checking if it's divisible by the smaller number. It iterates through multiples of the larger number, incrementing by the larger number itself in each step. The first multiple that is divisible by the smaller number is the LCM. This method is simple and intuitive, but it can be inefficient, especially for large numbers, as it checks multiple values until a match is found.
+
 
 
 class GfG {
@@ -37,8 +38,8 @@ class GfG {
 
 
 
-Time Complexity: O(min(a,b))
-Auxiliary Space: O(1)
+# Time Complexity: O(min(a,b))
+# Auxiliary Space: O(1)
 
 
  Using GCD LCM Formula

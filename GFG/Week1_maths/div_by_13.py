@@ -3,27 +3,27 @@ def isdivby13(s):
 
     return num%13==0
 
-Time Complexity: O(n), n is length of s
-Auxiliary Space: O(1)
+# Time Complexity: O(n), n is length of s
+# Auxiliary Space: O(1)
 
-Alternating Sum of 3-Digit Blocks
-A number is divisible by 13 if and only if the alternating sum of its 3-digit blocks, taken from right to left, is divisible by 13.
+# Alternating Sum of 3-Digit Blocks
+# A number is divisible by 13 if and only if the alternating sum of its 3-digit blocks, taken from right to left, is divisible by 13.
 
-Step by Step approach -
+# Step by Step approach -
 
-Pad the number so its length is a multiple of 3
--> If the number of digits is not a multiple of 3, append zeros to the right so each block has exactly 3 digits.
--> Example: "2911285" → "291128500" (after padding with two zeros).
-Split into 3-digit blocks from right to left
--> Example: "291128500" → blocks: 500, 128, 291 (right to left order).
-Apply alternating signs starting with + on the rightmost block
--> Pattern from right to left: + block , - block, + block, …
--> Example: +500 - 128 + 291.
-Sum the results
--> Example: 500 - 128 + 291 = 663.
-Check divisibility by 13
--> If the sum is divisible by 13, the original number is divisible by 13.
--> Example: 663 % 13 == 0 → divisible.
+# Pad the number so its length is a multiple of 3
+# -> If the number of digits is not a multiple of 3, append zeros to the right so each block has exactly 3 digits.
+# -> Example: "2911285" → "291128500" (after padding with two zeros).
+# Split into 3-digit blocks from right to left
+# -> Example: "291128500" → blocks: 500, 128, 291 (right to left order).
+# Apply alternating signs starting with + on the rightmost block
+# -> Pattern from right to left: + block , - block, + block, …
+# -> Example: +500 - 128 + 291.
+# Sum the results
+# -> Example: 500 - 128 + 291 = 663.
+# Check divisibility by 13
+# -> If the sum is divisible by 13, the original number is divisible by 13.
+# -> Example: 663 % 13 == 0 → divisible.
 
 
 

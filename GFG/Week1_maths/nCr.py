@@ -85,7 +85,7 @@ def nCr(n, r):
 # The logarithmic formula for nCr is: nCr = exp( log(n!) - log(r!) - log((n-r)!))
 
 
-#   nCr == n*n-1*...n-i / r! == pi i = 0 to r -1  n-i / i + 1
+#   nCr == n*n-1*...n-r + 1 / r! == pi i = 0 to r -1  n-i / i + 1
 # taking log --> log(nCr) == summation i =1 to r-1 ( log n-i) -log(i+1)
 
 
